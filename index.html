@@ -489,6 +489,7 @@ FORMAT RULES:
 - If something is boring, you can say that too.`;
 
 let history = [];
+const sessionId = crypto.randomUUID();
 
 async function send() {
   const inp = document.getElementById('inp');
@@ -514,7 +515,8 @@ async function send() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         system: SYSTEM,
-        messages: history
+        messages: history,
+        sessionId: sessionId
       })
     });
 
