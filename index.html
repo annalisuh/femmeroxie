@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Roxie</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,7 +26,7 @@
     height: 100%;
     background: var(--black);
     color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 300;
     overflow: hidden;
   }
@@ -93,11 +93,11 @@
   }
 
   .name {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 26px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     line-height: 1;
     text-transform: uppercase;
   }
@@ -107,7 +107,7 @@
   }
 
   .subtitle {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 9px;
     color: var(--mid);
     letter-spacing: 0.15em;
@@ -128,7 +128,7 @@
     gap: 8px;
     padding: 5px 10px;
     border: 1px solid var(--pink);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 9px;
     color: var(--pink);
     letter-spacing: 0.18em;
@@ -148,7 +148,7 @@
   }
 
   .vol {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 8.5px;
     color: var(--dim);
     letter-spacing: 0.12em;
@@ -186,7 +186,7 @@
   .msg.bot { align-self: flex-start; align-items: flex-start; }
 
   .msg-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 8.5px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -208,34 +208,37 @@
   .bubble {
     padding: 14px 18px;
     font-size: 14.5px;
-    line-height: 1.75;
-    font-weight: 300;
-    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.7;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
     position: relative;
+    border-radius: 18px;
   }
 
   .msg.user .bubble {
-    background: rgba(255, 46, 204, 0.08);
-    color: var(--text);
-    border: 1px solid var(--border);
+    background: linear-gradient(135deg, #ff2ecc 0%, #b026a8 100%);
+    color: #fff;
+    border: none;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 16px rgba(255, 46, 204, 0.2);
   }
 
   .msg.bot .bubble {
-    background: var(--panel);
+    background: #161616;
     color: var(--text);
     border: 1px solid var(--border-faint);
-    border-left: 2px solid var(--pink);
+    border-bottom-left-radius: 4px;
   }
 
   .msg.bot .bubble.slip {
     background: transparent;
     color: var(--pink);
     border: 1px solid var(--pink);
-    border-left: 2px solid var(--pink);
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: 16.5px;
     line-height: 1.6;
+    border-bottom-left-radius: 4px;
   }
 
   .thinking-wrap {
@@ -249,9 +252,10 @@
     display: flex;
     gap: 7px;
     padding: 18px 20px;
-    background: var(--panel);
+    background: #161616;
     border: 1px solid var(--border-faint);
-    border-left: 2px solid var(--pink);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
   }
 
   .dot {
@@ -274,7 +278,7 @@
     border-top: 1px solid var(--border);
     display: flex;
     gap: 10px;
-    align-items: flex-end;
+    align-items: stretch;
     flex-shrink: 0;
     background: var(--panel);
     position: relative;
@@ -295,19 +299,22 @@
 
   textarea {
     width: 100%;
-    background: var(--black);
+    height: 52px;
+    background: #161616;
     border: 1px solid var(--border-faint);
+    border-radius: 26px;
     color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
-    font-weight: 300;
-    padding: 14px 16px;
+    font-weight: 400;
+    padding: 16px 22px;
     resize: none;
     outline: none;
-    line-height: 1.6;
-    min-height: 48px;
+    line-height: 1.4;
+    min-height: 52px;
     max-height: 120px;
     transition: all 0.15s;
+    display: block;
   }
 
   textarea::placeholder {
@@ -321,41 +328,39 @@
   }
 
   .send-btn {
-    background: var(--pink);
-    border: 1px solid var(--pink);
-    color: var(--black);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0 22px;
+    background: linear-gradient(135deg, #ff2ecc 0%, #b026a8 100%);
+    border: none;
+    color: #fff;
     cursor: pointer;
-    height: 48px;
-    transition: all 0.15s;
-    white-space: nowrap;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    transition: all 0.2s;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    box-shadow: 0 4px 16px rgba(255, 46, 204, 0.3);
   }
 
-  .send-btn::after {
+  .send-btn::before {
     content: '→';
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0;
   }
 
   .send-btn:hover:not(:disabled) {
-    background: transparent;
-    color: var(--pink);
-    box-shadow: 0 0 12px rgba(255, 46, 204, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 46, 204, 0.5);
   }
 
   .send-btn:disabled {
-    opacity: 0.25;
+    opacity: 0.3;
     cursor: not-allowed;
+    box-shadow: none;
   }
 
   .footer-bar {
@@ -380,7 +385,7 @@
   .footer-note.active { color: var(--pink); }
 
   .footer-corner {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 8.5px;
     color: var(--dim);
     letter-spacing: 0.15em;
@@ -429,7 +434,7 @@
     <div class="input-wrap">
       <textarea id="inp" placeholder="Say something..." rows="1"></textarea>
     </div>
-    <button class="send-btn" id="sendbtn" onclick="send()">Send</button>
+    <button class="send-btn" id="sendbtn" onclick="send()" aria-label="Send"></button>
   </div>
 
   <div class="footer-bar">
@@ -499,7 +504,7 @@ async function send() {
   if (!text) return;
 
   inp.value = '';
-  inp.style.height = 'auto';
+  inp.style.height = '52px';
   btn.disabled = true;
 
   addMsg('user', text);
@@ -606,10 +611,13 @@ document.getElementById('inp').addEventListener('keydown', function(e) {
 });
 
 document.getElementById('inp').addEventListener('input', function() {
-  this.style.height = 'auto';
-  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+  this.style.height = '52px';
+  if (this.scrollHeight > 52) {
+    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+  }
 });
 </script>
 </body>
 </html>
+
 
