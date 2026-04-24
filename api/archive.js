@@ -1,6 +1,6 @@
-import { sql } from '@vercel/postgres';
+const { sql } = require('@vercel/postgres');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const auth = req.headers.authorization;
   const validAuth = 'Basic ' + Buffer.from('admin:' + process.env.ARCHIVE_PASSWORD).toString('base64');
 
@@ -19,16 +19,17 @@ export default async function handler(req, res) {
 
     const html = buildHTML(rows);
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.status(200).send(html);
-  } catch(e) {
-    if (e.message.includes('does not exist')) {
+    return res.status(200).send(html);
+  } catch (e) {
+    if (e.message && e.message.includes('does not exist')) {
       return res.status(200).send(buildHTML([]));
     }
-    res.status(500).send('Archive error: ' + e.message);
+    console.error('Archive error:', e);
+    return res.status(500).send('Archive error: ' + e.message);
   }
-}
+};
 
-function escape(str) {
+function escapeHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -54,7 +55,7 @@ function buildHTML(rows) {
     const msgsHTML = transcript.map(msg => `
       <div class="msg ${msg.role}">
         <div class="role">${msg.role === 'user' ? 'Visitor' : 'Roxie'}</div>
-        <div class="content">${escape(msg.content)}</div>
+        <div class="content">${escapeHtml(msg.content)}</div>
       </div>
     `).join('');
 
@@ -66,7 +67,7 @@ function buildHTML(rows) {
             <span class="date">${formatDate(row.timestamp)}</span>
             <span class="count">${userMsgCount} message${userMsgCount !== 1 ? 's' : ''}</span>
           </div>
-          <div class="preview">${escape(preview)}${preview.length >= 80 ? '...' : ''}</div>
+          <div class="preview">${escapeHtml(preview)}${preview.length >= 80 ? '...' : ''}</div>
           <div class="toggle-icon">+</div>
         </div>
         <div class="conv-body" id="body-${i}">
@@ -228,3 +229,4 @@ function toggle(i) {
 </body>
 </html>`;
 }
+
